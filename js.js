@@ -14,11 +14,19 @@ import {
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-const firebaseConfig = {
+const firebaseConfig =  {
+    apiKey: "AIzaSyC-ehtfogNB8EWxxw0eiMhtrtYkKD8m64g",
+    databaseURL: "https://skelbimai2-1e27f-default-rtdb.europe-west1.firebasedatabase.app/",
+    authDomain: "skelbimai2-1e27f.firebaseapp.com",
+    projectId: "skelbimai2-1e27f",
+    storageBucket: "skelbimai2-1e27f.appspot.com",
+    messagingSenderId: "280937733085",
+    appId: "1:280937733085:web:ab632fdb3d0c5f39f7f434"
+  };
     //write your data
     
 
-};
+
 
 // Initialize Firebase, database, authentication
 const app = initializeApp(firebaseConfig);
@@ -65,6 +73,14 @@ const loginUser = () => {
 
             });
             console.log(user, "Login successful!");
+            document.getElementById('login-box').style="display:none";
+            document.getElementById('logged-box').style="display:contents";
+            document.getElementById('user').innerText=user['email'];
+            
+            console.log(userCredential);
+
+
+
         })
         .catch((error) => {
             const errorCode = error.code;
@@ -94,6 +110,9 @@ onAuthStateChanged(auth, (user) => {
 document.getElementById('signOut').addEventListener('click', () => {
     signOut(auth).then(() => {
         // Sign-out successful.
+        document.getElementById('logged-box').style="display:none";
+        document.getElementById('login-box').style="display:contents";
+            
         alert('Sign-out successful!')
     }).catch((error) => {
         const errorCode = error.code;
